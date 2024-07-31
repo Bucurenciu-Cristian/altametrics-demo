@@ -12,6 +12,6 @@ export class AuthDtoClass {
   @ApiProperty({ example: 'user@example.com' })
   email: string;
 
-  @ApiProperty({ example: 'password123' })
+  @ApiProperty({ example: 'password' })
   password: string;
 }

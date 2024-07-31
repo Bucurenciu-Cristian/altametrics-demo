@@ -13,7 +13,7 @@ async function bootstrap() {
     .setDescription('The backend API description')
     .setVersion('1.0')
     .addTag('auth')
-    .addTag('Hello')
+    .addTag('invoices')
     .addBearerAuth()
     .build();
   const document = SwaggerModule.createDocument(app, config);
@@ -23,7 +23,7 @@ async function bootstrap() {
     },
   });
 
-  await app.listen(3000);
+  await app.listen(process.env.PORT || 3000);
 }
 
 bootstrap();
