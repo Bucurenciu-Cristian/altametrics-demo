@@ -13,11 +13,17 @@ RUN npm install
 # Copy the rest of the application code
 COPY . .
 
+# Install Prisma CLI
+RUN npm install -g prisma
+
+# Generate Prisma client
+RUN npx prisma generate
+
 # Build the application
 RUN npm run build
 
 # Expose the port specified in .env
-EXPOSE ${PORT}
+EXPOSE ${PORT_BE}
 
 # Command to run the application
 CMD ["npm", "run", "start:prod"]

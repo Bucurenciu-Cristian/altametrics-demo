@@ -29,9 +29,10 @@ services:
         condition: service_healthy
     volumes:
       - ./backend:/app
-    command: bash -c "npm run migrate:dev && npm run seed && npm run start:dev"
+      - /app/node_modules
+    command: bash -c "npx prisma migrate dev --name init && npx prisma db seed && npm run start:dev"
     healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:${PORT_BE}/ || exit 1"]
+      test: ["CMD-SHELL", "curl -f http://localhost:${PORT_BE}/health || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
@@ -43,17 +44,11 @@ services:
       - ./frontend/.env
     ports:
       - "${PORT_FE}:${PORT_FE}"
-    depends_on:
-      backend:
-        condition: service_healthy
     volumes:
       - ./frontend:/app
+      - /app/node_modules
     command: ["npm", "run", "dev"]
-    healthcheck:
-      test: ["CMD-SHELL", "curl -f http://localhost:${PORT_FE} || exit 1"]
-      interval: 10s
-      timeout: 5s
-      retries: 5
+
 
 volumes:
   postgres_data:
