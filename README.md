@@ -11,6 +11,7 @@ That's it.
 
 ## What's included
  - 
+
 - 3 services: frontend, backend, and database
 - Frontend: React
 - Backend: NestJS
@@ -19,3 +20,9 @@ That's it.
 - Database: Postgres
 
 PS: I know it's not the perfect way of doing it with docker-compose, but it gets the job done.
+
+### Running the project
+- Run `docker-compose up --build`
+- The project will be available at:
+- Frontend: http://localhost:5173
+- Backend: http://localhost:3000
